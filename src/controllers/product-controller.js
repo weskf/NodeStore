@@ -2,8 +2,7 @@
 
 // const mongoose = require('mongoose');
 // const Product = mongoose.model('Product');
-
-const Product = require('../models/Product')
+const Product = require('../models/Product');
 const ValidationContract = require('../../validators/fluent-validator');
 const repository = require('../../repositories/product-repository');
 
@@ -24,7 +23,7 @@ exports.post = async(req, res, next) => {
 
         await repository.create(req.body)
         res.status(201).send({message: "Produto cadastrado com sucesso."});
-        
+
     } catch (error) {
         res.status(400).send({message: "Falha ao cadastrar o produto", data: error});
     }
