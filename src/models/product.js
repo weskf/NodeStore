@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
     },
     slug:{
         type: String, 
-        required: true,
+        required: [true, 'O slug é obrigatório'],
         trim: true,
         index: true,
         unique: true
