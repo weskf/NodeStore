@@ -3,6 +3,7 @@
 const Customer = require('../models/customer')
 const ValidationContract = require('../../validators/fluent-validator');
 const repository = require('../../repositories/customer-repository');
+const md5 = require('md5');
 
 exports.post = async(req, res, next) => {
 
@@ -19,7 +20,11 @@ exports.post = async(req, res, next) => {
 
     try {
 
-        await repository.create(req.body)
+        await repository.create({
+           name: req.body.name,
+           email: req.body.email,
+           password: md5(req.body.password + global.SALT_KEY)
+        })
         res.status(201).send({message: "Cliente cadastrado com sucesso."});
 
     } catch (error) {
