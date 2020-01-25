@@ -16,8 +16,9 @@ const productsRoute = require('./routes/products-route');
 mongoose.connect('mongodb+srv://wfrohlich:wes2chris@cluster0-dyj65.mongodb.net/nodeStore?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 //Carrega os Models
-//const Product = require('./models/product');
-
+// const Product = require('./models/product');
+// const Customer = require('./models/customer');
+//const Order = require('./models/order');
 //Carrega as rotas
 app.use('/', indexRoute);
 app.use('/products', productsRoute);
