@@ -19,7 +19,7 @@ exports.create = async(data) => {
 
 exports.update = async(id, data) => {
 
-    await customer.findByIdAndUpdate(id, {
+    await Customer.findByIdAndUpdate(id, {
             $set: {
                 nome: data.nome,
                 email: data.email,
@@ -29,5 +29,5 @@ exports.update = async(id, data) => {
 };    
 
 exports.remove = async(id) => {
-    return await customer.findOneAndRemove(id);
+    return await Customer.findOneAndRemove(id);
 };    
