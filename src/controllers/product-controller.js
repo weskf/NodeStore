@@ -32,10 +32,8 @@ exports.post = async(req, res, next) => {
         let matches = rawdata.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
         let type = matches[1];
         let buffer = new Buffer(matches[2], 'base64');
-    
-        console.log(filename);
         
-        //Salva a imagem
+        //Salva a imagem no azure
         await blobSvc.createBlockBlobFromText('product-image', filename, buffer, {
             contentType: type
         }, function (error, result, response){
@@ -43,7 +41,7 @@ exports.post = async(req, res, next) => {
                 filename = 'default-product.png'
             }
         });
-        console.log(filename);
+       
         await repository.create({
             title: req.body.title,
             slug: req.body.slug,

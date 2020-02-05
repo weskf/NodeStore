@@ -5,10 +5,10 @@ const Customer = mongoose.model('Customer');
 
 exports.get = async() => {
     
-    const res = await Customer.find({
+    const res = await Customer.findOne({
         active:true
     }, 'name email password');
-
+    
     return res;
 };
 
@@ -31,3 +31,12 @@ exports.update = async(id, data) => {
 exports.remove = async(id) => {
     return await Customer.findOneAndRemove(id);
 };    
+
+exports.authenticate = async(data) => {
+    const res = await Customer.find({
+        email: data.email,
+        password: data.password
+    });
+
+    return res;
+}
