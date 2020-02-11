@@ -7,8 +7,19 @@ const config = require('./config');
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit: '5mb'
+}));
+
 app.use(bodyParser.urlencoded({ extended: false}));
+
+//Habilitar o CORS
+app.use(function(req, res, next){
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept, x-access-token');
+    res.header('Access-Control-Allow-Method', 'GET, POST, DELETE, PUT, OPTIONS');
+    next();
+});
 
 const indexRoute = require('./routes/index-route');
 const productsRoute = require('./routes/products-route');
